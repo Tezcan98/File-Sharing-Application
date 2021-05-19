@@ -1,20 +1,37 @@
 from socket import *
 import json
+import converter
+import datetime
+import converter
+serverName = 'localhost'
+serverPort = 8000
+clientSocket = socket(AF_INET, SOCK_STREAM)  
 
+clientSocket.connect((serverName,serverPort))
 
-def download_chunk(user, chunk):
-    print(user, chunk)
-    
-    request_content = {"requested content":chunk}
+def download_chunk(user, chunk): 
+    request_content = {"requested_content" : chunk} 
+    clientSocket.send(json.dumps(request_content).encode('utf-8'))
+    recieved_chunk = clientSocket.recv(65535*64)
+
+    with open("downloaded_files\\"+chunk, 'wb') as infile: 
+        infile.write(recieved_chunk)
+
+    with open('downloadLogs.txt', 'w') as f:
+        f.write(str(datetime.datetime.now()) +" - "+ chunk + " - "+ user)
     
 
 with open('files.json') as f:
     lines = f.readlines() 
 content_dictionary = json.loads(lines[0])
+ 
+ 
+ 
 print(lines)
 
 while 1:
     download_file = input("Type the file which you want to download : ")
+    success = True
     for i in range(1,6):
         searching = True
         searching_chunk = download_file.split(".")[0]+"_"+str(i)
@@ -24,14 +41,10 @@ while 1:
                     download_chunk(user,chunk)
                     searching = False
         if searching is True:
-            print("CHUNK "+searching_chunk+" 3 CANNOT BE DOWNLOADED FROM ONLINE PEERS")
+            print("CHUNK "+searching_chunk+" CANNOT BE DOWNLOADED FROM ONLINE PEERS")
+            success = False
+    if success:
+        converter.merger("downloaded_files\\"+download_file, 5)
 
-serverName = 'localhost'
-serverPort = 12000
-clientSocket = socket(AF_INET, SOCK_STREAM)
-clientSocket.connect((serverName,serverPort))
-sentence = input('Input lowercase sentence:')
-clientSocket.send(sentence.encode())
-modifiedSentence = clientSocket.recv(1024)
-print(modifiedSentence.decode())
+ 
 clientSocket.close()

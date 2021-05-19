@@ -25,11 +25,11 @@ def divider(filename, piece):
 def merger(filename, piece):  
     content_name = filename.split('.')[0]
     chunknames = []
-    for i in range(1,piece):
-        chunknames.append(content_name+"_"+i) 
+    for i in range(1,piece+1):
+        chunknames.append(content_name+"_"+str(i)) 
     
-    with open(filename, 'wb') as outfile: 
+    with open(filename+".png", 'wb') as outfile: 
         for chunk in chunknames: 
             with open(chunk, 'rb') as infile: 
-                outfile.write(infile.read() )
+                outfile.write(infile.read())
             infile.close() 

@@ -20,6 +20,9 @@ serverSocket.bind(('', serverPort))
 specified_file = input('write root file directory : \n')
 print("Your path is defined as " + root + specified_file + "\n")
 
+with open("hostedfile.txt", 'w') as outfile: 
+        outfile.write(root + specified_file+"\\")
+
 while 1:
     get_interval = time.time()
     if get_interval - start_time > interval_time:
