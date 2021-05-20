@@ -17,8 +17,8 @@ def download_chunk(user, chunk):
     with open("downloaded_files\\"+chunk, 'wb') as infile: 
         infile.write(recieved_chunk)
 
-    with open('downloadLogs.txt', 'w') as f:
-        f.write(str(datetime.datetime.now()) +" - "+ chunk + " - "+ user)
+    with open('downloadLogs.txt', 'a') as f:  # TODO : YENİDEN YAZICAK EKLEMİCEK
+        f.write(str(datetime.datetime.now()) +" - "+ chunk + " - "+ user+"\n")
     
 
 with open('files.json') as f:

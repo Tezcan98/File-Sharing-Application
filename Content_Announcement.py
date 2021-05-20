@@ -14,8 +14,7 @@ start_time = time.time()
 interval_time = 1 
 
 serverSocket = socket(AF_INET, SOCK_DGRAM) 
-serverSocket.bind(('', serverPort)) 
-# serverSocket.setsockopt(SOL_SOCKET, SO_BROADCAST, 1)
+serverSocket.bind(('', serverPort))
 
 specified_file = input('write root file directory : \n')
 print("Your path is defined as " + root + specified_file + "\n")
