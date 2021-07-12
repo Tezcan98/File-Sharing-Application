@@ -17,3 +17,9 @@ These processes should work as outlined in their respective specifications.
 downloaded files.
 
 Click for [Function Specification](https://github.com/Tezcan98/File-Sharing-Application/blob/main/FunctionalSpecification.pdf)
+
+
+
+
+https://user-images.githubusercontent.com/38787576/125344662-40e44780-e360-11eb-818b-0c4d20255475.mp4
+
