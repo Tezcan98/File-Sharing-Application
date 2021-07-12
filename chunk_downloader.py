@@ -29,6 +29,7 @@ content_dictionary = json.loads(line)
 server = {}  # files.jsondaki, anonscunun kaydettiği ipler ile bağlantı kuruluyor 
 for user in content_dictionary.keys():
     serverocket = socket(AF_INET, SOCK_STREAM)  
+    print(user)
     serverocket.connect((user,serverPort))
     server[user] = serverocket
  

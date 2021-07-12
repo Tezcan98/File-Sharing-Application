@@ -6,7 +6,7 @@ import converter
 import time
 import json 
 
-root = str(os.path.dirname(os.path.abspath(__file__))) + "\\file_systems\\"
+root = str(os.path.dirname(os.path.abspath(__file__))) + "\\"
 
 serverIP = '25.90.43.255'
 serverPort = 5001
